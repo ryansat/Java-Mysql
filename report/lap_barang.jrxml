@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lap_barang" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="afd20583-fed7-41e0-a630-e7f4dea33459">
+	<queryString language="SQL">
+		<![CDATA[select
+a.NAMA_BARANG,sum(b.JUMLAH) AS "Jumlah Beli",sum(c.JUMLAH) AS "Jumlah Terjual"
+from  
+barang a
+join dimiliki b on (b.ID_BARANG = a.ID_BARANG) 
+join memiliki c on (c.ID_BARANG = b.ID_BARANG)
+group by a.NAMA_BARANG ]]>
+	</queryString>
+	<field name="NAMA_BARANG" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Jumlah Beli" class="java.math.BigDecimal"/>
+	<field name="Jumlah Terjual" class="java.math.BigDecimal"/>
+	<group name="NAMA_BARANG">
+		<groupExpression><![CDATA[$F{NAMA_BARANG}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
